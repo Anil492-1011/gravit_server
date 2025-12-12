@@ -15,7 +15,7 @@ const app = express();
 const server = http.createServer(app);
 
 const allowedOrigins = [
-   `http://localhost:5173/`
+   "https://gravit-client.vercel.app/"
 ];
 
 app.use(cors({
@@ -53,7 +53,7 @@ process.on('uncaughtException', (err) => {
 // Socket.IO Setup
 const io = new Server(server, {
     cors: {
-        origin: "*",
+        origin: "https://gravit-client.vercel.app",
         methods: ["GET", "POST"]
     }
 });
