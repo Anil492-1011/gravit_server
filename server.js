@@ -15,8 +15,7 @@ const app = express();
 const server = http.createServer(app);
 
 const allowedOrigins = [
-  "https://gravit-info-client.vercel.app",
-  "https://gravit-info-client-git-main-pradhyum2025s-projects.vercel.app"
+   `http://localhost:5173/`
 ];
 
 app.use(cors({
