@@ -15,19 +15,13 @@ const app = express();
 const server = http.createServer(app);
 
 const allowedOrigins = [
-   "https://gravit-client.vercel.app/",
+   "https://gravit-client.vercel.app",
    "https://gravit-client-git-main-anil-daymas-projects.vercel.app/",
    "https://gravit-client-j4h2z5j71-anil-daymas-projects.vercel.app/"
 ];
 
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+  origin: "https://gravit-client.vercel.app",
   credentials: true
 }));
 
