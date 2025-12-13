@@ -20,7 +20,7 @@ const server = http.createServer(app);
 const allowedOrigins = [
   "https://gravit-client.vercel.app",
   "https://gravit-client-git-main-anil-daymas-projects.vercel.app",
-  "https://gravit-client-j4h2z5j71-anil-daymas-projects.vercel.app"
+  "https://gravit-client-j4h2z5j71-anil-daymas-projects.vercel.app",
 ];
 
 // ---------------------------
