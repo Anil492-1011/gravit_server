@@ -1,9 +1,3 @@
-// ---------------------------------------------------------------------
-// <copyright file="bookingController.js" company="Gravit InfoSystem">
-// Copyright (c) Gravit InfoSystem. All rights reserved.
-// </copyright>
-// ---------------------------------------------------------------------
-
 import db from '../config/db.js';
 
 const parseSeats = (seats) => {

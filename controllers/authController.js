@@ -1,9 +1,3 @@
-// ---------------------------------------------------------------------
-// <copyright file="authController.js" company="Gravit InfoSystem">
-// Copyright (c) Gravit InfoSystem. All rights reserved.
-// </copyright>
-// ---------------------------------------------------------------------
-
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import db from '../config/db.js';

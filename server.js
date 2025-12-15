@@ -14,18 +14,18 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 
-// ---------------------------
-// ✔ Allowed Origins (NO SLASH)
-// ---------------------------
+
 const allowedOrigins = [
   "https://gravit-client.vercel.app",
   "https://gravit-client-git-main-anil-daymas-projects.vercel.app",
   "https://gravit-client-j4h2z5j71-anil-daymas-projects.vercel.app",
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "http://localhost:3000",
+  "http://localhost:5000",
 ];
 
-// ---------------------------
-// ✔ CORS MIDDLEWARE
-// ---------------------------
+
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -40,9 +40,6 @@ app.use(cors({
 
 app.use(express.json({ limit: '50mb' }));
 
-// -------------------------------------
-// ✔ Socket.IO CORS (Same allowedOrigins)
-// -------------------------------------
 const io = new Server(server, {
   cors: {
     origin: allowedOrigins,
@@ -51,16 +48,12 @@ const io = new Server(server, {
   }
 });
 
-// -----------------------
-// ✔ API ROUTES
-// -----------------------
+
 app.use('/api/auth', authRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/bookings', bookingRoutes);
 
-// ---------------------------
-// ⚠ ERROR MIDDLEWARE AT END
-// ---------------------------
+
 app.use((err, req, res, next) => {
   console.error('🔥 SERVER ERROR:', err.message);
   res.status(500).json({
@@ -69,9 +62,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-// =============================================================================
-// SOCKET.IO LOGIC (Seat Locking System)
-// =============================================================================
 
 const lockedSeats = {};
 const LOCK_EXPIRY_TIME = 5 * 60 * 1000;
@@ -137,10 +127,10 @@ io.on('connection', (socket) => {
         io.to(`event-${eventId}`).emit('seatLocked', { seatIndex, userId });
       }
     } catch (error) {
-      socket.emit('seatLockFailed', { seatIndex, reason: 'Server error' });
+      socket.emit('seatLockFailed', { seatIndex , reason: 'Server error' });
     }
   });
-
+//dfdgd
   socket.on('unlockSeat', ({ eventId, seatIndex, userId }) => {
     try {
       if (lockedSeats[eventId] && lockedSeats[eventId][seatIndex]) {
@@ -163,9 +153,6 @@ io.on('connection', (socket) => {
   });
 });
 
-// =============================================================================
-// SERVER + DB CONNECTION
-// =============================================================================
 
 const PORT = process.env.PORT || 5000;
 
